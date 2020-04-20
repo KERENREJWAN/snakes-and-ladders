@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="/css.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>סולמות ונחשים</title>
+</head>
+
+<body>
+    <header class="App-header" style="text-align: center;">
+        <h1>יצירת מאגר שאלות חדש</h1>
+    </header>
+    <p style="position: relative; top: -3vh; text-align: center;">עליך להוסיף לפחות 7 שאלות, ולאחר מכן תוכל לעבור למשחק.
+    </p>
+    <div class="addFormDiv">
+        <form class=" item" action="/createNew" method="post">
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-3 col-form-label">נושא המשחק</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="נושא המשחק" name="gameName" autocomplete="off"
+                        required value="<%= gameName %>">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-3 col-form-label">שאלה</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="שאלה" name="question" autocomplete="off"
+                        required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-3 col-form-label">תשובה 1</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="תשובה 1" name="ans1" autocomplete="off"
+                        required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-3 col-form-label">תשובה 2</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="תשובה 2" name="ans2" autocomplete="off"
+                        required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-3 col-form-label">תשובה 3</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="תשובה 3" name="ans3" autocomplete="off"
+                        required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-3 col-form-label">תשובה 4</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="תשובה 4" name="ans4" autocomplete="off">
+                </div>
+            </div>
+            <div class="col-sm-10" style="position: relative; right: 32vw">
+                <button type="submit" class="btn btn-outline-secondary">הוסף שאלה</button>
+            </div>
+        </form>
+    </div>
+    <div class="addFormDiv" style="right: 55vw; width: 40vw; color: black; overflow-y: scroll;">
+        <h5>השאלות במאגר:</h5>
+        <% questions.forEach(question => { %>
+        <div>
+            <p><%=question.question%></p>
+            <ol>
+                <li><%=question.answer1%></li>
+                <li><%=question.answer2%></li>
+                <li><%=question.answer3%></li>
+                <li><%=question.answer4%></li>
+            </ol>
+        </div>
+        <% }); %>
+        <a href="<%=gameName%>">
+            <% if (questions.length >= 7) { %>
+            <button type="button" class="btn btn-outline-secondary" style="position: relative; right: 27vw;">מעבר
+                למשחק</button>
+            <% } else { %>
+            <button type="button" class="btn btn-outline-secondary" style="position: relative; right: 27vw;"
+                disabled="true">מעבר
+                למשחק</button>
+            <% } %>
+        </a>
+    </div>
+
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Load our React component. -->
+    <script src="../src/index.js"></script>
+</body>
+
+</html>

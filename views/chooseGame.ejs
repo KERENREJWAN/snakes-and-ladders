@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="/css.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>סולמות ונחשים</title>
+</head>
+
+<body style="overflow-y: scroll">
+    <header class="App-header" style="text-align: center;">
+        <h1>בחירת משחק</h1>
+    </header>
+    <div style="text-align: right; margin-right: 4vw">
+        <% games.forEach(game => { %>
+        <a class="chooseGameDisplay" href="/<%=game.name%>">
+            <img src="./boardgame.png" style="height: 18vh; width: 10vw; margin-bottom: 1vh;" />
+            <p><%=game.name%></p>
+        </a>
+        <% }); %>
+    </div>
+
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Load our React component. -->
+    <script src="../src/index.js"></script>
+</body>
+
+</html>
