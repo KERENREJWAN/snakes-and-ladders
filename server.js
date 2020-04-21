@@ -10,7 +10,8 @@ const arrayGamesQuestions = {
     answer1: "תשובה 1",
     answer2: "תשובה 2",
     answer3: "תשובה 3",
-    answer4: "תשובה 4"
+    answer4: "תשובה 4",
+    correctAns: 1
 };
 
 app.use(express.static(path.join(__dirname, 'client', 'build')));
@@ -26,7 +27,8 @@ const questionSchema = new mongoose.Schema({
     answer1: String,
     answer2: String,
     answer3: String,
-    answer4: String
+    answer4: String,
+    correctAns: Number
 });
 
 const Question = mongoose.model('Question', questionSchema);
@@ -43,7 +45,7 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/createNew', (req, res) => {
-    res.render('createNew.ejs', { gameName: "", questions: [] });
+    res.render('createNew.ejs', { gameName: "", questions: [], gameId: "" });
 });
 
 app.get('/chooseGame', (req, res) => {
@@ -62,12 +64,13 @@ app.get('/chooseGame', (req, res) => {
     });
 });
 
-app.get('/game', (req, res) => {
+app.get('/:game', (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 });
 
-app.get('/:game', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+app.get('/api/subjects/:gameId', async (req, res) => {
+    let gameName = await Subject.findOne({ _id: req.params.gameId });
+    return res.status(200).send(gameName);
 });
 
 app.post('/createNew', (req, res) => {
@@ -78,7 +81,8 @@ app.post('/createNew', (req, res) => {
         answer1: req.body.ans1,
         answer2: req.body.ans2,
         answer3: req.body.ans3,
-        answer4: req.body.ans4
+        answer4: req.body.ans4,
+        correctAns: req.body.inlineRadioOptions
     });
 
     Subject.findOne({ name: subjectName }, function (err, foundSubject) {
@@ -88,11 +92,11 @@ app.post('/createNew', (req, res) => {
                 questions: newQuestion
             });
             newSubject.save();
-            res.render('createNew.ejs', { gameName: subjectName, questions: newSubject.questions });
+            res.render('createNew.ejs', { gameName: subjectName, questions: newSubject.questions, gameId: newSubject.id });
         } else {
             foundSubject.questions.push(newQuestion);
             foundSubject.save();
-            res.render('createNew.ejs', { gameName: subjectName, questions: foundSubject.questions });
+            res.render('createNew.ejs', { gameName: subjectName, questions: foundSubject.questions, gameId: foundSubject.id });
         }
     });
 });

@@ -19,7 +19,7 @@
     </header>
     <div style="text-align: right; margin-right: 4vw">
         <% games.forEach(game => { %>
-        <a class="chooseGameDisplay" href="/<%=game.name%>">
+        <a class="chooseGameDisplay" href="/<%=game._id%>">
             <img src="./boardgame.png" style="height: 18vh; width: 10vw; margin-bottom: 1vh;" />
             <p><%=game.name%></p>
         </a>

@@ -62,7 +62,34 @@
                     <input type="text" class="form-control" placeholder="תשובה 4" name="ans4" autocomplete="off">
                 </div>
             </div>
-            <div class="col-sm-10" style="position: relative; right: 32vw">
+            <fieldset class="form-group">
+                <div class="row">
+                    <legend class="col-form-label col-sm-3 pt-0" style="color: black">תשובה נכונה</legend>
+                    <div class="col-sm-9">
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="inlineRadio1">1</label>
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                value="1">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="inlineRadio2">2</label>
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                value="2">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="inlineRadio1">3</label>
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                                value="3">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="inlineRadio2">4</label>
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4"
+                                value="4">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="col-sm-10" style="position: relative; right: 32vw; bottom: 6vh">
                 <button type="submit" class="btn btn-outline-secondary">הוסף שאלה</button>
             </div>
         </form>
@@ -73,14 +100,14 @@
         <div>
             <p><%=question.question%></p>
             <ol>
-                <li><%=question.answer1%></li>
-                <li><%=question.answer2%></li>
-                <li><%=question.answer3%></li>
-                <li><%=question.answer4%></li>
+                <li style="font-weight: <%= question.correctAns === 1 ? 'bold' : 'normal' %>"><%=question.answer1%></li>
+                <li style="font-weight: <%= question.correctAns === 2 ? 'bold' : 'normal' %>"><%=question.answer2%></li>
+                <li style="font-weight: <%= question.correctAns === 3 ? 'bold' : 'normal' %>"><%=question.answer3%></li>
+                <li style="font-weight: <%= question.correctAns === 4 ? 'bold' : 'normal' %>"><%=question.answer4%></li>
             </ol>
         </div>
         <% }); %>
-        <a href="<%=gameName%>">
+        <a href="<%=gameId%>">
             <% if (questions.length >= 7) { %>
             <button type="button" class="btn btn-outline-secondary" style="position: relative; right: 27vw;">מעבר
                 למשחק</button>
