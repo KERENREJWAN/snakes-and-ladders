@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -44,9 +45,9 @@ app.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'public', 'loadPage.html'));
 });
 
-app.get('/createNew', (req, res) => {
-    res.render('createNew.ejs', { gameName: "", questions: [], gameId: "" });
-});
+// app.get('/createNew', (req, res) => {
+//     res.render('createNew.ejs', { gameName: "", questions: [], gameId: "" });
+// });
 
 app.get('/chooseGame', (req, res) => {
     Subject.find({}, function (err, foundItems) {
@@ -62,6 +63,19 @@ app.get('/chooseGame', (req, res) => {
             res.render('chooseGame.ejs', { games: foundItems });
         }
     });
+});
+
+app.get("/password", (req, res) => {
+    res.render('enterPassword.ejs', { error: "" });
+});
+
+app.post("/password", (req, res) => {
+    if (req.body.password === process.env.PASSWORD) {
+        res.render('createNew.ejs', { gameName: "", questions: [], gameId: "" });
+        // res.redirect("/createNew");
+    } else {
+        res.render('enterPassword.ejs', { error: "סיסמא שגויה" });
+    }
 });
 
 app.get('/:game', (req, res) => {
@@ -98,6 +112,17 @@ app.post('/createNew', (req, res) => {
             foundSubject.save();
             res.render('createNew.ejs', { gameName: subjectName, questions: foundSubject.questions, gameId: foundSubject.id });
         }
+    });
+});
+
+app.post('/delete', (req, res) => {
+    const game = req.body.gameName;
+    const questionToDelete = req.body.deleteButton;
+    Subject.findOne({ name: game }, function (err, foundSubject) {
+        foundSubject.questions = foundSubject.questions.filter(x => x.id !== questionToDelete);
+        console.log(foundSubject);
+        foundSubject.save();
+        res.render('createNew.ejs', { gameName: game, questions: foundSubject.questions, gameId: foundSubject.id });
     });
 });
 

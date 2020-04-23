@@ -105,6 +105,11 @@
                 <li style="font-weight: <%= question.correctAns === 3 ? 'bold' : 'normal' %>"><%=question.answer3%></li>
                 <li style="font-weight: <%= question.correctAns === 4 ? 'bold' : 'normal' %>"><%=question.answer4%></li>
             </ol>
+            <form action="/delete" method="post">
+                <input type="hidden" name="gameName" value="<%=gameName%>" />
+                <button type="submit" class="btn btn-danger" value="<%= question.id %>" name="deleteButton"
+                    style="position: relative; right: 30vw; bottom: 15vh" formaction="/delete">מחק</button>
+            </form>
         </div>
         <% }); %>
         <a href="<%=gameId%>">
