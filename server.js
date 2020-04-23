@@ -120,7 +120,6 @@ app.post('/delete', (req, res) => {
     const questionToDelete = req.body.deleteButton;
     Subject.findOne({ name: game }, function (err, foundSubject) {
         foundSubject.questions = foundSubject.questions.filter(x => x.id !== questionToDelete);
-        console.log(foundSubject);
         foundSubject.save();
         res.render('createNew.ejs', { gameName: game, questions: foundSubject.questions, gameId: foundSubject.id });
     });
