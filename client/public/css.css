@@ -1,0 +1,195 @@
+body {
+    margin: 0;
+      font-family: assistant;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #282c34;
+    overflow: hidden;
+    color: white;
+    direction: rtl;
+  }
+
+  @font-face {
+    font-family: assitant;
+    src: "../Assistant-Regular.tft";
+  }
+  
+  .App {
+    text-align: center;
+  }
+  
+  .App-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 3vh;
+    height: 13vh;
+  }
+
+  .startGameButton {
+    box-shadow: 3px 5px rgba(0, 0, 0, 0.562);
+    height: 8vh;
+    width: 15vw;
+    background-color: rgb(247, 247, 247);
+  }
+  
+  .Board img {    
+    height: 85vh;
+    width: 50vw;
+  }
+
+  img.Player {
+    position: absolute;
+    height: 10vh;
+    width: 3vw;
+  }
+
+.Cube img {
+  height: 20vh;
+  width: 10vw;
+  position: absolute;
+  top: 27.5vh;
+  left: 5vw;
+}
+
+.Cube h5 {
+  position: absolute;
+  top: 44.5vh;
+  left: 5.5vw;
+}
+
+.Cube h2 {
+  position: absolute;
+  top: 48vh;
+  left: 9.5vw;
+}
+
+.whosTurn h5 {
+  position: absolute;
+  top: 43vh;
+  right: 8.7vw;
+}
+
+.whosTurn img {
+  position: absolute;
+  top: 47vh;
+  right: 9vw;
+  height: 21vh;
+  width: 7vw;
+}
+
+.whiteButton {
+  background-color: white;
+}
+
+.Button {
+  position: absolute;
+  top: 60vh;
+  left: 6.4vw;
+  background-color: white;
+}
+
+.Question {
+  background-image: url("./questionsBackground.jpg");
+  background-size: 100% 150%;
+  height: 70vh;
+  width: 70vw;
+  position: absolute;
+  top: 16vh;
+  right: 14vw;
+  border: 2px white solid;
+  border-radius: 3px;
+  z-index: 100;
+}
+
+.Question h2 {
+  margin-top: 4vh;
+  font-size: 3vw;
+  font-weight: 400;
+}
+
+.Question h1 {
+  margin-top: 4vh;
+}
+
+.Question p {
+  margin-top: 4vh;
+  font-size: 2vw;
+}
+
+.answer {
+  box-shadow: 3px 5px rgba(0, 0, 0, 0.562);
+  height: 11vh;
+  width: 20vw;
+  background-color: rgb(247, 247, 247);
+  position: absolute;
+}
+
+.correctAnswer {
+  color: black;
+  background-color: greenyellow;
+}
+
+.correctAnswer:hover {
+  border: none;
+  box-shadow: 3px 5px rgba(0, 0, 0, 0.562);
+  background-color: greenyellow;
+}
+
+.wrongAnswer {
+  color: white;
+  background-color: red;
+}
+
+.wrongAnswer:hover {
+  border: none;
+  background-color: red;
+  box-shadow: 3px 5px rgba(0, 0, 0, 0.562);
+}
+
+.answer1 {
+  top: 37vh;
+  right: 11vw;
+}
+
+.answer2 {
+  top: 52vh;
+  right: 11vw;
+}
+
+.answer3 {
+  top: 37vh;
+  left: 11vw;
+}
+
+.answer4 {
+  top: 52vh;
+  left: 11vw;
+}
+
+.addFormDiv {
+  height: 72vh;
+  width: 45vw;
+  position: absolute;
+  background-color: white;
+  top: 18vh;
+  right: 5vw;
+  text-align: right;
+  padding: 2vw;
+}
+
+label {
+  color: black;
+}
+
+.chooseGameDisplay {
+  display: inline-block;
+  height: 30vh;
+  width: 15vw;
+  background-color: white;
+  padding: 2vw;
+  text-align: center;
+  color: black;
+  margin: 1.5vw;
+}
